@@ -1,124 +1,58 @@
 <script>
-	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
+	import { page } from '$app/stores'
 </script>
 
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
+	<div class="branding">
+		SOAWR
 	</div>
-
 	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
 		<ul>
-			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a sveltekit:prefetch href="/about">About</a>
-			</li>
-			<li class:active={$page.url.pathname === '/todos'}>
-				<a sveltekit:prefetch href="/todos">Todos</a>
-			</li>
+			<li><a href="/" class:route-active={$page.url.pathname === '/'}>home</a></li>
+			<li><a href="#how-it-works" class:route-active={$page.url.pathname.search('#how-it-works') !== -1}>how it works</a></li>
+			<li><a href="#why-us" class:route-active={$page.url.pathname.search('#why-us') !== -1}>why us</a></li>
+			<li><a href="/cars" class:route-active={$page.url.pathname === '/cars'}>explore cars</a></li>
+			<li><a href="/request-a-car" class:route-active={$page.url.pathname === '/request-a-car'}>request car</a></li>
+			<!-- <li><a href="/contact" class:route-active={$page.url.pathname === '/contact-us'}>contact us</a></li> -->
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
 	</nav>
-
-	<div class="corner">
-		<!-- TODO put something else here? github link? -->
-	</div>
 </header>
 
 <style>
 	header {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	.corner a {
-		display: flex;
+		display: grid;
+		grid-auto-flow: column;
 		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
+		justify-content: space-between;
+
+		padding: 2rem 0;
 	}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
-
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
+	.branding {
+		text-transform: uppercase;
+		font-weight: 900;
+		font-size: 2rem;
 	}
 
 	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		display: grid;
+		grid-auto-flow: column;
+		column-gap: 2rem;
+		justify-content: start;
+
 		list-style: none;
-		background: var(--background);
-		background-size: contain;
 	}
 
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li.active::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--accent-color);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 1em;
-		color: var(--heading-color);
-		font-weight: 700;
-		font-size: 0.8rem;
+	a {
 		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
+		padding: 0.5rem;
 	}
 
 	a:hover {
-		color: var(--accent-color);
+		text-decoration: underline;
+	}
+
+	.route-active {
+		font-weight: 700;
 	}
 </style>
